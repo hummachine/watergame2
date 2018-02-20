@@ -1,0 +1,82 @@
+#pragma kernel UpdateParticles
+#pragma kernel ClearParticles
+#pragma kernel SpawnParticles
+
+struct ParticleData
+{
+	float3 position;
+	float3 velocity;
+	float2 lifetime;
+	float offset;
+	float maxIntensity;
+};
+
+AppendStructuredBuffer<ParticleData> TargetParticles : register(u1);
+RWStructuredBuffer<ParticleData> TargetParticlesFlat : register(u2);
+Texture2D<half4>	DisplacedHeightMap;
+Texture2D<half4>	LocalSlopeMap;
+StructuredBuffer<ParticleData> SourceParticles;
+StructuredBuffer<int4> SourceParticlesInfo;
+
+SamplerState samplerDisplacedHeightMap;
+SamplerState samplerLocalSlopeMap;
+
+float particleCount;
+float deltaTime;
+float4 waterTileSize;
+float3 surfaceOffset;
+float4 externalForces;
+float4 localMapsCoords;
+
+[numthreads(128,1,1)]
+void UpdateParticles (uint3 id : SV_DispatchThreadID)
+{
+	//if(id.x < SourceParticlesInfo[0].x)
+	{
+		ParticleData particle = SourceParticles[id.x];
+		particle.lifetime.x -= deltaTime;
+		particle.velocity *= (1.0 - deltaTime * 0.2);
+		particle.velocity += externalForces.xyz;
+		
+		float2 originalPos = particle.position.xz;
+		float4 fftUV = originalPos.xyxy / waterTileSize.xxyy;
+		float4 fftUV2 = originalPos.xyxy / waterTileSize.zzww;
+			
+		float h = surfaceOffset.y;
+			
+		h += DisplacedHeightMap.SampleLevel(samplerDisplacedHeightMap, fftUV.xy, 0).x;
+		h += DisplacedHeightMap.SampleLevel(samplerDisplacedHeightMap, fftUV.zw, 0).y;
+		h += DisplacedHeightMap.SampleLevel(samplerDisplacedHeightMap, fftUV2.xy, 0).z;
+		h += DisplacedHeightMap.SampleLevel(samplerDisplacedHeightMap, fftUV2.zw, 0).w;
+		h *= LocalSlopeMap.SampleLevel(samplerLocalSlopeMap, (originalPos + localMapsCoords.xy) * localMapsCoords.zz, 0).w;
+		
+		float fade = min(0, particle.position.y - h);
+		particle.lifetime.x += fade * 0.4;
+		particle.maxIntensity += fade;
+		
+		if(particle.lifetime.x > 0 && particle.maxIntensity > 0)
+		{
+			particle.position += particle.velocity * deltaTime;
+			TargetParticles.Append(particle);
+		}
+	}
+}
+
+[numthreads(128,1,1)]
+void ClearParticles (uint3 id : SV_DispatchThreadID)
+{
+	//TargetParticlesFlat[id.x].lifetime.x = 0;
+	ParticleData particle = TargetParticlesFlat[id.x];
+	particle.lifetime = 0;
+	TargetParticlesFlat[id.x] = particle;
+}
+
+[numthreads(1, 1, 1)]
+void SpawnParticles ()
+{
+	for(int i=0; i<particleCount; ++i)
+	{
+		ParticleData particle = SourceParticles[i];
+		TargetParticles.Append(particle);
+	}
+}

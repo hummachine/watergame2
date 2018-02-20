@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512b86c7ae63fe04c8c62616568703ff, type: 3}
+  m_Name: Sea - 11. Violent Storm
+  m_EditorClassIdentifier: 
+  spectrumShader: {fileID: 0}
+  spectrumType: 1
+  windSpeed: 31.8928
+  tileSize: 180
+  tileScale: 3
+  wavesAmplitude: 8
+  horizontalDisplacementScale: 2.73
+  phillipsCutoffFactor: 2000
+  gravity: -9.81
+  fetch: 1000000
+  directionality: 0.897
+  absorptionColor: {r: 0.9632353, g: 0.9632353, b: 0.9632353, a: 1}
+  underwaterAbsorptionColor: {r: 0.49264705, g: 0.4111181, b: 0.3803525, a: 1}
+  diffuseColor: {r: 0.053625166, g: 0.10013679, b: 0.12156863, a: 1}
+  specularColor: {r: 0, g: 0, b: 0, a: 1}
+  depthColor: {r: 0, g: 0, b: 0, a: 1}
+  emissionColor: {r: 0.014705896, g: 0.00043252678, b: 0.00043252678, a: 1}
+  reflectionColor: {r: 1, g: 1, b: 1, a: 1}
+  smoothness: 0.706
+  customAmbientSmoothness: 1
+  ambientSmoothness: 0.946
+  subsurfaceScattering: 0.183
+  refractionDistortion: 0.114
+  fresnelBias: 0.07727195
+  detailFadeDistance: 12.27
+  displacementNormalsIntensity: 1.51
+  planarReflectionIntensity: 0.75
+  planarReflectionFlatten: 2.37
+  planarReflectionVerticalOffset: 0.00154
+  edgeBlendFactor: 0.5
+  directionalWrapSSS: 0.2
+  pointWrapSSS: 0.4
+  density: 998.6
+  underwaterBlurSize: 0.0035
+  underwaterDistortionsIntensity: 0.1
+  underwaterDistortionAnimationSpeed: 0.25
+  normalMapAnimation1:
+    speed: 0.5
+    deviation: -30
+    intensity: 3.68
+    tiling: {x: 1, y: 1}
+  normalMapAnimation2:
+    speed: -0.55
+    deviation: 20
+    intensity: 2.73
+    tiling: {x: 1.5, y: 1.5}
+  normalMap: {fileID: 2800000, guid: 6a93bce67bd33834991c0a5f8781ff3f, type: 3}
+  foamIntensity: 0.2
+  foamThreshold: 2
+  foamFadingFactor: 0.8
+  foamNormalScale: 1
+  foamSpecularColor: {r: 0.9852941, g: 0.05071366, b: 0.05071366, a: 0}
+  sprayThreshold: 0.55
+  spraySkipRatio: 0.98
+  spraySize: 1.08
+  foamDiffuseMap: {fileID: 2800000, guid: f9b33d3272df3314c8cb86b7007f80d3, type: 3}
+  foamNormalMap: {fileID: 2800000, guid: c424cb098c67a2d48946c5c3a97c3cb9, type: 3}
+  foamTiling: {x: 5.4, y: 5.4}

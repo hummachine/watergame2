@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512b86c7ae63fe04c8c62616568703ff, type: 3}
+  m_Name: Sea - 10. Storm
+  m_EditorClassIdentifier: 
+  spectrumShader: {fileID: 0}
+  spectrumType: 1
+  windSpeed: 25.720001
+  tileSize: 180
+  tileScale: 1
+  wavesAmplitude: 1
+  horizontalDisplacementScale: 2.5
+  phillipsCutoffFactor: 2000
+  gravity: -9.81
+  fetch: 50000
+  directionality: 0
+  absorptionColor: {r: 0.623, g: 0.5031029, b: 0.49217004, a: 1}
+  underwaterAbsorptionColor: {r: 0.503, g: 0.45, b: 0.43, a: 1}
+  diffuseColor: {r: 0.053625166, g: 0.10013679, b: 0.12156863, a: 1}
+  specularColor: {r: 0.0353, g: 0.0471, b: 0.0549, a: 1}
+  depthColor: {r: 0, g: 0, b: 0, a: 1}
+  emissionColor: {r: 0, g: 0, b: 0, a: 1}
+  reflectionColor: {r: 1, g: 1, b: 1, a: 1}
+  smoothness: 0.45
+  customAmbientSmoothness: 0
+  ambientSmoothness: 0.94
+  subsurfaceScattering: 0.1
+  refractionDistortion: 0.55
+  fresnelBias: 0.020407815
+  detailFadeDistance: 3.5
+  displacementNormalsIntensity: 1.75
+  planarReflectionIntensity: 0
+  planarReflectionFlatten: 2.4
+  planarReflectionVerticalOffset: 0.0015
+  edgeBlendFactor: 0.5
+  directionalWrapSSS: 0.2
+  pointWrapSSS: 0.4
+  density: 998.6
+  underwaterBlurSize: 0.0035
+  underwaterDistortionsIntensity: 0.1
+  underwaterDistortionAnimationSpeed: 0.25
+  normalMapAnimation1:
+    speed: 1
+    deviation: -10
+    intensity: 1
+    tiling: {x: 1, y: 1}
+  normalMapAnimation2:
+    speed: -0.55
+    deviation: 20
+    intensity: 0.74
+    tiling: {x: 1.5, y: 1.5}
+  normalMap: {fileID: 2800000, guid: 6a93bce67bd33834991c0a5f8781ff3f, type: 3}
+  foamIntensity: 1
+  foamThreshold: 0.9
+  foamFadingFactor: 0.85
+  foamNormalScale: 2.2
+  foamSpecularColor: {r: 1, g: 1, b: 1, a: 0}
+  sprayThreshold: 1
+  spraySkipRatio: 0.98
+  spraySize: 1.2
+  foamDiffuseMap: {fileID: 2800000, guid: f9b33d3272df3314c8cb86b7007f80d3, type: 3}
+  foamNormalMap: {fileID: 2800000, guid: c424cb098c67a2d48946c5c3a97c3cb9, type: 3}
+  foamTiling: {x: 5.4, y: 5.4}
